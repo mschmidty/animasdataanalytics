@@ -1,0 +1,84 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const allWork = await getCollection("work");
+const sortedWork = allWork.sort((a, b) => b.data.year - a.data.year);
+---
+
+<section class="home-work">
+  <h1>Work</h1>
+  <ul>
+    {
+      sortedWork.map((project) => (
+        <li class="work-single">
+          <article>
+            <figure>
+              <Image
+                src={project.data.featureImage}
+                width={1100}
+                height={1320}
+                alt={project.data.title}
+                class="object-cover"
+              />
+            </figure>
+            <div class="project-details">
+              <header>
+                <h3>{project.data.title}</h3>
+                <p>
+                  (
+                  <time datetime="{project.data.year}">
+                    {project.data.year}
+                  </time>
+                  )
+                </p>
+              </header>
+              <ul class="tags">
+                {project.data.tags.map((tag) => (
+                  <li class="tag">#{tag}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+<style lang="scss">
+  .work-single {
+    list-style-type: none;
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+  }
+  .project-details {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    header {
+      display: flex;
+    }
+    header h3,
+    header p {
+      font-family: $h-font;
+      color: $secondary-color;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+  }
+  .tags {
+    list-style-type: none;
+    display: flex;
+    li {
+      margin-right: 0.3rem;
+      font-family: $h-font;
+      font-style: italic;
+      color: $secondary-color;
+      text-transform: uppercase;
+    }
+  }
+</style>

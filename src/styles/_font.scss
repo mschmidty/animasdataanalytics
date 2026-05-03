@@ -1,0 +1,29 @@
+@use 'color' as *;
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+$h-font: "Karla", sans-serif;
+$b-font: Georgia, serif;
+
+body{
+  font-family: $h-font ;
+  font-optical-sizing: auto;
+  font-weight: 370;
+  font-style: normal;
+  color: $primary-color;
+  backgroun-color: $background-color;
+}
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+p, ul, ol {
+  font-family: $b-font;
+  color: $black;
+}

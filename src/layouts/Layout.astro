@@ -1,23 +1,35 @@
+---
+import Header from "../components/Header.astro";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <Header />
+    <section class="wrapper">
+      <slot />
+    </section>
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style lang="scss" is:global>
+  @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap");
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .wrapper {
+    display: block;
+    padding: 0 2rem 0 2rem;
+  }
 </style>
