@@ -13,8 +13,8 @@ import Header from "../components/Header.astro";
     <title>Astro Basics</title>
   </head>
   <body>
-    <Header />
     <section class="wrapper">
+      <Header />
       <slot />
     </section>
   </body>
@@ -29,6 +29,9 @@ import Header from "../components/Header.astro";
     height: 100%;
   }
   .wrapper {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
     display: block;
     padding: 0 2rem 0 2rem;
   }

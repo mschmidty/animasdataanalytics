@@ -7,7 +7,7 @@ const sortedWork = allWork.sort((a, b) => b.data.year - a.data.year);
 ---
 
 <section class="home-work">
-  <h1>Work</h1>
+  <h2>Work</h2>
   <ul>
     {
       sortedWork.map((project) => (
@@ -26,18 +26,11 @@ const sortedWork = allWork.sort((a, b) => b.data.year - a.data.year);
               <header>
                 <h3>{project.data.title}</h3>
                 <p>
-                  (
                   <time datetime="{project.data.year}">
                     {project.data.year}
                   </time>
-                  )
                 </p>
               </header>
-              <ul class="tags">
-                {project.data.tags.map((tag) => (
-                  <li class="tag">#{tag}</li>
-                ))}
-              </ul>
             </div>
           </article>
         </li>
@@ -46,27 +39,58 @@ const sortedWork = allWork.sort((a, b) => b.data.year - a.data.year);
   </ul>
 </section>
 <style lang="scss">
+  .home-work {
+    margin-top: 4rem;
+    > h2 {
+      font-size: clamp(10rem, 15vw, 15rem);
+      margin-bottom: clamp(-6rem, -6vw, -3rem);
+      position: relative;
+      z-index: -1;
+      color: $secondary-color;
+      font-weight: 700;
+    }
+    > ul {
+      display: grid;
+      position: relative;
+      z-index: 99;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      column-gap: 2rem;
+      row-gap: 2rem;
+    }
+    li {
+      background: $background-color;
+    }
+  }
   .work-single {
     list-style-type: none;
+    padding: 2rem;
+    border: 1.5px solid $primary-color;
+    border-radius: 1rem;
+    figure {
+      width: 100%;
+      aspect-ratio: 13 / 16;
+      overflow: hidden;
+      position: relative;
+    }
     figure img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
       object-fit: cover;
     }
   }
   .project-details {
     margin-top: 0.5rem;
-    display: flex;
-    justify-content: space-between;
     header {
       display: flex;
+      justify-content: space-between;
     }
     header h3,
     header p {
       font-family: $h-font;
       color: $secondary-color;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 500;
     }
   }

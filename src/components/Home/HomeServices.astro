@@ -1,0 +1,64 @@
+---
+import GisIcon from "../../assets/gis.svg";
+import MlIcon from "../../assets/machine-learning.svg";
+import DataPipelines from "../../assets/data-pipeline2.svg";
+---
+
+<section class="home-section">
+  <h2 class="home-header">Services</h2>
+  <ul>
+    <li>
+      <MlIcon />
+      <h3>Machine Learning</h3>
+      <p>
+        We focus on generalizable models that help our customers understand the
+        world through machine learning.
+      </p>
+    </li>
+    <li>
+      <DataPipelines />
+      <h3>Custom Data Pipelines</h3>
+      <p>
+        Putting data in our customers hands in a usable way, one time or through
+        an API.
+      </p>
+    </li>
+    <li>
+      <GisIcon />
+      <h3>GIS</h3>
+      <p>We specialize in spatial analysis and data visualization.</p>
+    </li>
+  </ul>
+</section>
+<style lang="scss">
+  ul {
+    padding-top: 4rem;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    li {
+      padding: 1.5rem;
+      font-family: $h-font;
+      border: 1px solid $primary-color;
+      border-radius: 10px;
+      background-color: $background-color;
+      box-shadow: 1rem 1rem 0rem $secondary-color;
+    }
+    li:nth-child(2) {
+      transform: translateY(-4rem);
+    }
+    svg {
+      width: 3rem;
+      margin: 1.5rem auto;
+      fill: $primary-color;
+    }
+    h3 {
+      margin-bottom: 0.5rem;
+      /* text-align: center; */
+    }
+    p {
+      color: $secondary-color;
+    }
+  }
+</style>

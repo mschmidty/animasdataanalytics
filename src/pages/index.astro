@@ -1,6 +1,8 @@
 ---
 import HomeHero from "../components/Home/HomeHero.astro";
 import HomeWork from "../components/Home/HomeWork.astro";
+import HomeServices from "../components/Home/HomeServices.astro";
+import HomeAbout from "../components/Home/HomeAbout.astro";
 import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -10,4 +12,19 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <HomeHero />
   <HomeWork />
+  <HomeServices />
+  <HomeAbout />
 </Layout>
+<style lang="scss" is:global>
+  .home-section {
+    margin-top: 4rem;
+  }
+  .home-header {
+    font-size: clamp(10rem, 15vw, 15rem);
+    margin-bottom: clamp(-6rem, -6vw, -3rem);
+    position: relative;
+    z-index: -1;
+    color: $secondary-color;
+    font-weight: 700;
+  }
+</style>
