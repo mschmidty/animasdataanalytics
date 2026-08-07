@@ -1,14 +1,52 @@
 <section class="home-hero">
+  <div id="p5-hero-canvas" class="p5-hero-canvas"></div>
   <div class="home-hero-banner">
-    <p>Data Driven Understanding</p>
-    <h1>Remote Sensing<br />Machine Learning<br />Data Science</h1>
+    <p>Data Driven</p>
+    <h1>Spatial Analysis<br />Machine Learning<br />Data Science</h1>
   </div>
   <div class="home-hero-intro">
     <p>Understanding the world through data, machine learning, and AI.</p>
   </div>
 </section>
+<script>
+  import { initFlowField } from "../../sketches/flowField";
+
+  let p5Instance: any = null;
+
+  async function loadP5() {
+    const container = document.getElementById("p5-hero-canvas");
+    if (!container) return;
+
+    // Dynamic client-side import of p5
+    const p5Module = await import("p5");
+    const p5 = p5Module.default;
+
+    p5Instance = initFlowField(p5, container);
+  }
+
+  // Initialize on DOM load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadP5);
+  } else {
+    loadP5();
+  }
+
+  // Cleanup on Astro page transition or unload if using ViewTransitions
+  document.addEventListener("astro:before-swap", () => {
+    if (p5Instance) {
+      p5Instance.remove();
+      p5Instance = null;
+    }
+  });
+</script>
 <style lang="scss">
+  .home-hero {
+    position: relative;
+    overflow: hidden;
+  }
   .home-hero-banner {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     height: 60vh;
@@ -25,7 +63,26 @@
       font-weight: 500;
     }
   }
+  .p5-hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; // Allows mouse clicks to pass through to text/buttons if non-interactive
+
+    // Canvas element styling automatically appended by p5
+    :global(canvas) {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
   .home-hero-intro {
+    position: relative;
+    z-index: 1;
     display: block;
     font-size: 1.4rem;
     font-style: italic;

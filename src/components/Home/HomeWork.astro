@@ -12,27 +12,29 @@ const sortedWork = allWork.sort((a, b) => b.data.year - a.data.year);
     {
       sortedWork.map((project) => (
         <li class="work-single">
-          <article>
-            <figure>
-              <Image
-                src={project.data.featureImage}
-                width={1100}
-                height={1320}
-                alt={project.data.title}
-                class="object-cover"
-              />
-            </figure>
-            <div class="project-details">
-              <header>
-                <h3>{project.data.title}</h3>
-                <p>
-                  <time datetime="{project.data.year}">
-                    {project.data.year}
-                  </time>
-                </p>
-              </header>
-            </div>
-          </article>
+          <a href={`/work/${project.id}/`}>
+            <article>
+              <figure>
+                <Image
+                  src={project.data.featureImage}
+                  width={1100}
+                  height={1320}
+                  alt={project.data.title}
+                  class="object-cover"
+                />
+              </figure>
+              <div class="project-details">
+                <header>
+                  <h3>{project.data.title}</h3>
+                  <p>
+                    <time datetime="{project.data.year}">
+                      {project.data.year}
+                    </time>
+                  </p>
+                </header>
+              </div>
+            </article>
+          </a>
         </li>
       ))
     }
@@ -66,6 +68,9 @@ const sortedWork = allWork.sort((a, b) => b.data.year - a.data.year);
     padding: 2rem;
     border: 1.5px solid $primary-color;
     border-radius: 1rem;
+    a {
+      text-decoration: none;
+    }
     figure {
       width: 100%;
       aspect-ratio: 13 / 16;

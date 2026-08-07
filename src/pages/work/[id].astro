@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+// 1. Generate a path for every entry in the "work" collection
+export async function getStaticPaths() {
+  const workEntries = await getCollection("work");
+  return workEntries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+// 2. Get the entry for the current page and render its markdown content
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout>
+  <main>
+    <h1>{entry.data.title}</h1>
+    <p>{entry.data.year}</p>
+    <Content />
+  </main>
+</Layout>

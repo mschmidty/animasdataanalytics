@@ -5,6 +5,9 @@ import path from "path";
 // https://astro.build/config
 export default defineConfig({
   vite: {
+    optimizeDeps: {
+      include: ["p5"],
+    },
     css: {
       preprocessorOptions: {
         scss: {
