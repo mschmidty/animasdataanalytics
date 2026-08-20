@@ -32,11 +32,18 @@ import DataPipelines from "../../assets/data-pipeline2.svg";
 </section>
 <style lang="scss">
   ul {
-    padding-top: 4rem;
+    padding: 0;
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    @media (min-width: 768) {
+      padding: 4rem 0 0 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      li:nth-child(2) {
+        transform: translateY(-4rem);
+      }
+    }
     li {
       padding: 1.5rem;
       font-family: $h-font;
@@ -46,7 +53,10 @@ import DataPipelines from "../../assets/data-pipeline2.svg";
       box-shadow: 1rem 1rem 0rem $secondary-color;
     }
     li:nth-child(2) {
-      transform: translateY(-4rem);
+      transform: translateY(-1.5rem);
+    }
+    li:nth-child(3) {
+      transform: translateY(-3rem);
     }
     svg {
       width: 3rem;

@@ -7,7 +7,7 @@ const sortedWork = allWork.sort((a, b) => b.data.year - a.data.year);
 ---
 
 <section class="home-work">
-  <h2>Work</h2>
+  <h2 class="home-header">Work</h2>
   <ul>
     {
       sortedWork.map((project) => (
@@ -43,15 +43,8 @@ const sortedWork = allWork.sort((a, b) => b.data.year - a.data.year);
 <style lang="scss">
   .home-work {
     margin-top: 4rem;
-    > h2 {
-      font-size: clamp(10rem, 15vw, 15rem);
-      margin-bottom: clamp(-6rem, -6vw, -3rem);
-      position: relative;
-      z-index: -1;
-      color: $secondary-color;
-      font-weight: 700;
-    }
     > ul {
+      padding: 0;
       display: grid;
       position: relative;
       z-index: 99;

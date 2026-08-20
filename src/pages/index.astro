@@ -20,11 +20,14 @@ import Layout from "../layouts/Layout.astro";
     margin-top: 4rem;
   }
   .home-header {
-    font-size: clamp(10rem, 15vw, 15rem);
+    font-size: clamp(4.5rem, 16vw, 15rem);
     margin-bottom: clamp(-6rem, -6vw, -3rem);
     position: relative;
     z-index: -1;
     color: $secondary-color;
     font-weight: 700;
+    @media (max-width: 768px) {
+      margin-bottom: 1.25rem;
+    }
   }
 </style>

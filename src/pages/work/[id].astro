@@ -1,25 +1,110 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 
 // 1. Generate a path for every entry in the "work" collection
 export async function getStaticPaths() {
   const workEntries = await getCollection("work");
+  const allTags = [
+    ...new Set(workEntries.flatMap((entry) => entry.data.tags || [])),
+  ];
   return workEntries.map((entry) => ({
     params: { id: entry.id },
-    props: { entry },
+    props: { entry, allTags },
   }));
 }
 
 // 2. Get the entry for the current page and render its markdown content
-const { entry } = Astro.props;
+const { entry, allTags } = Astro.props;
 const { Content } = await render(entry);
 ---
 
 <Layout>
   <main>
-    <h1>{entry.data.title}</h1>
-    <p>{entry.data.year}</p>
-    <Content />
+    <header class="hero-header">
+      <div class="header-info">
+        <div class="header-metadata">
+          <p class="date">{entry.data.year}</p>
+        </div>
+        <h1>{entry.data.title}</h1>
+        {
+          entry.data.tags && entry.data.tags.length > 0 && (
+            <ul class="tags">
+              {entry.data.tags.map((tag, index) => (
+                <li>
+                  {tag}
+                  {index < entry.data.tags.length - 1 && ", "}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+      <figure>
+        <Image
+          src={entry.data.featureImage}
+          width={1100}
+          height={1320}
+          alt={entry.data.title}
+          class="object-cover"
+        />
+      </figure>
+    </header>
+    <section class="article-content">
+      <Content />
+    </section>
   </main>
 </Layout>
+
+<style lang="scss">
+  .hero-header {
+    display: grid;
+    place-items: center;
+  }
+  .hero-header > * {
+    grid-area: 1/1;
+  }
+  figure {
+    width: 100vw;
+    aspect-ratio: 16 / 13;
+    overflow: hidden;
+    position: relative;
+    /* left: 50%; */
+    /* right: 50%; */
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    object-fit: cover;
+  }
+  .header-info {
+    background: $background-color;
+    padding: 3rem;
+    border-radius: 10px;
+    z-index: 1;
+  }
+  .date,
+  .tags {
+    font-family: $h-font;
+    color: $secondary-color;
+  }
+  .tags {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    li {
+      padding: 0 0.5rem 0 0;
+    }
+  }
+
+  .article-content {
+    padding: 4rem 0;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+</style>

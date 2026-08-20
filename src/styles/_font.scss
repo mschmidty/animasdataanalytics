@@ -25,5 +25,13 @@ body{
 
 p, ul, ol {
   font-family: $b-font;
-  color: $black;
+  color: $primary-color;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+ul, ol {
+  padding: 1rem 0 1rem 2rem;
+}
+p, li {
+  line-height: 1.5;
 }
