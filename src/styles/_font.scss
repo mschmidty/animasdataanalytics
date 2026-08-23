@@ -3,6 +3,8 @@
 
 $h-font: "Karla", sans-serif;
 $b-font: Georgia, serif;
+$link-color: #2B5C8F;
+$link-hover: #1C3D61;
 
 body{
   font-family: $h-font ;
@@ -35,3 +37,17 @@ ul, ol {
 p, li {
   line-height: 1.5;
 }
+
+ // In src/styles/_font.scss
+ a {
+      color: $link-color;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $link-hover;
+      }
+    }
+
+
